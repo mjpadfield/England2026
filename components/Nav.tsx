@@ -9,6 +9,7 @@ const links = [
   { label: "Cancún", href: "#cancun" },
   { label: "Mexico City", href: "#mexico-city" },
   { label: "Miami", href: "#miami" },
+  { label: "Plan B 🤞", href: "/plan-b" },
 ];
 
 export default function Nav() {

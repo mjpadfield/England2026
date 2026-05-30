@@ -1,9 +1,28 @@
+export type Flight = {
+  from: string;
+  to: string;
+  airline: string;
+  departs: string;
+  arrives?: string;
+  via?: string;
+  bookedOn?: string;
+};
+
+export type MapLocation = {
+  name: string;
+  address?: string;
+  lat: number;
+  lng: number;
+  type: "stay" | "stadium" | "fanzone" | "bar";
+};
+
 export type City = {
   id: string;
   name: string;
   emoji: string;
   country: string;
   dates: string;
+  coords: [number, number];
   stay: {
     name: string;
     address: string;
@@ -12,6 +31,8 @@ export type City = {
   travel: {
     arrival: string;
     departure?: string;
+    arrivalFlight?: Flight;
+    departureFlight?: Flight;
   };
   match?: {
     round: string;
@@ -33,6 +54,7 @@ export type City = {
     address: string;
     tip: string;
   }[];
+  mapLocations: MapLocation[];
 };
 
 export const cities: City[] = [
@@ -42,14 +64,29 @@ export const cities: City[] = [
     emoji: "🗽",
     country: "USA",
     dates: "26–30 June",
+    coords: [40.73, -73.98],
     stay: {
       name: "Friend's place",
       address: "656 Metropolitan Ave, Brooklyn, NY",
       note: "Williamsburg — right next to Banter bar. Perfect base.",
     },
     travel: {
-      arrival: "Fri 26 June — fly from London Heathrow",
-      departure: "Tue 1 July — fly to Atlanta",
+      arrival: "Fri 26 June — fly from London Gatwick",
+      departure: "Tue 30 June — fly to Atlanta",
+      arrivalFlight: {
+        from: "London Gatwick (LGW)",
+        to: "New York JFK",
+        airline: "Norse Atlantic",
+        departs: "13:05",
+        arrives: "15:55",
+        bookedOn: "mytrip.com",
+      },
+      departureFlight: {
+        from: "New York",
+        to: "Atlanta",
+        airline: "JetBlue",
+        departs: "14:55",
+      },
     },
     match: {
       round: "Group Stage",
@@ -106,24 +143,50 @@ export const cities: City[] = [
         tip: "Multi-level, 30+ screens, supporters groups from every nation. Closest thing to a stadium inside a bar. Worth the trip to Manhattan for a big match.",
       },
     ],
+    mapLocations: [
+      { name: "Your stay — 656 Metropolitan Ave", lat: 40.7134, lng: -73.9556, type: "stay" },
+      { name: "MetLife Stadium", address: "East Rutherford, NJ", lat: 40.8135, lng: -74.0744, type: "stadium" },
+      { name: "FIFA Fan Zone Queens", address: "USTA Billie Jean King Center", lat: 40.7501, lng: -73.8468, type: "fanzone" },
+      { name: "Hudson Yards Screen", lat: 40.7540, lng: -74.0019, type: "fanzone" },
+      { name: "Banter Bar", address: "132 Havemeyer St, Williamsburg", lat: 40.7131, lng: -73.9558, type: "bar" },
+      { name: "230 Fifth Rooftop", lat: 40.7451, lng: -73.9882, type: "bar" },
+      { name: "Grand Banks Oyster Bar", address: "Pier 25, Tribeca", lat: 40.7209, lng: -74.0158, type: "bar" },
+      { name: "Legends (Football Factory)", address: "6 W 33rd St", lat: 40.7484, lng: -73.9882, type: "bar" },
+    ],
   },
   {
     id: "atlanta",
     name: "Atlanta",
     emoji: "🍑",
     country: "USA",
-    dates: "1–3 July",
+    dates: "30 June – 2 July",
+    coords: [33.749, -84.388],
     stay: {
       name: "Accommodation",
       address: "1159 Wade Street, Atlanta, GA",
     },
     travel: {
-      arrival: "Tue 1 July — fly from New York",
-      departure: "Thu 3 July — fly to Cancún",
+      arrival: "Tue 30 June — fly from New York",
+      departure: "Thu 2 July — fly to Cancún",
+      arrivalFlight: {
+        from: "New York",
+        to: "Atlanta",
+        airline: "JetBlue",
+        departs: "14:55",
+      },
+      departureFlight: {
+        from: "Atlanta",
+        to: "Cancún",
+        via: "Fort Lauderdale",
+        airline: "JetBlue",
+        departs: "07:10",
+        arrives: "11:55",
+        bookedOn: "lastminute.com",
+      },
     },
     match: {
       round: "Round of 32",
-      date: "Wednesday 2 July (TBC)",
+      date: "Wednesday 1 July (TBC)",
       time: "TBC",
       stadium: "Mercedes-Benz Stadium",
       address: "1 AMB Dr NW, Atlanta, GA 30313",
@@ -156,21 +219,45 @@ export const cities: City[] = [
         tip: "7,000 sq ft indoor/outdoor space, Atlanta United supporters HQ. Great post-match beer garden atmosphere.",
       },
     ],
+    mapLocations: [
+      { name: "Your stay — 1159 Wade St", lat: 33.7560, lng: -84.4220, type: "stay" },
+      { name: "Mercedes-Benz Stadium", lat: 33.7553, lng: -84.4006, type: "stadium" },
+      { name: "Centennial Olympic Park Fan Fest", lat: 33.7603, lng: -84.3922, type: "fanzone" },
+      { name: "STATS Brewpub", lat: 33.7557, lng: -84.3998, type: "bar" },
+      { name: "Brewhouse Cafe", address: "Little Five Points", lat: 33.7565, lng: -84.3499, type: "bar" },
+    ],
   },
   {
     id: "cancun",
     name: "Cancún",
     emoji: "🌴",
     country: "Mexico",
-    dates: "3–4 July",
+    dates: "2–4 July",
+    coords: [21.1619, -86.8515],
     stay: {
       name: "Transit stop",
       address: "Cancún, Quintana Roo, Mexico",
       note: "Short stopover en route to Mexico City. Hotel Zona Hotelera recommended.",
     },
     travel: {
-      arrival: "Thu 3 July — fly from Atlanta",
-      departure: "Fri 4 July — fly to Mexico City",
+      arrival: "Thu 2 July — fly from Atlanta via Fort Lauderdale",
+      departure: "Sat 4 July — fly to Mexico City",
+      arrivalFlight: {
+        from: "Atlanta",
+        to: "Cancún",
+        via: "Fort Lauderdale",
+        airline: "JetBlue",
+        departs: "07:10",
+        arrives: "11:55",
+        bookedOn: "lastminute.com",
+      },
+      departureFlight: {
+        from: "Cancún",
+        to: "Mexico City",
+        airline: "Volaris",
+        departs: "10:50",
+        bookedOn: "kiwi.com",
+      },
     },
     fanzone: {
       name: "Cancún Beach Bars",
@@ -192,6 +279,10 @@ export const cities: City[] = [
         tip: "Classic Cancún — not subtle, but they'll have the football on and the drinks flowing.",
       },
     ],
+    mapLocations: [
+      { name: "Zona Hotelera", lat: 21.0744, lng: -86.7700, type: "fanzone" },
+      { name: "Señor Frog's", lat: 21.0785, lng: -86.7714, type: "bar" },
+    ],
   },
   {
     id: "mexico-city",
@@ -199,14 +290,22 @@ export const cities: City[] = [
     emoji: "🌮",
     country: "Mexico",
     dates: "4–7 July",
+    coords: [19.4326, -99.1332],
     stay: {
       name: "Apartment",
       address: "Dr. Lavista, Colonia Doctores, CDMX",
       note: "Great central location — Roma Norte and Condesa bars are a short taxi ride away.",
     },
     travel: {
-      arrival: "Fri 4 July — fly from Cancún",
+      arrival: "Sat 4 July — fly from Cancún",
       departure: "Mon 7 July — fly to Miami",
+      arrivalFlight: {
+        from: "Cancún",
+        to: "Mexico City",
+        airline: "Volaris",
+        departs: "10:50",
+        bookedOn: "kiwi.com",
+      },
     },
     match: {
       round: "Round of 16",
@@ -221,12 +320,12 @@ export const cities: City[] = [
       name: "FIFA Fan Fest — El Zócalo",
       address: "Plaza de la Constitución, Centro Histórico, CDMX",
       notes:
-        "Free entry, no registration. Mexico's Fan Fest is at the Zócalo — the main square surrounded by incredible colonial architecture. Every match screened live. Expect massive, electric crowds for any Mexico or CONMEBOL game.",
+        "Free entry, no registration. Mexico's Fan Fest is at the Zócalo — the main square surrounded by incredible colonial architecture. Every match screened live. Expect massive, electric crowds.",
     },
     bars: [
       {
         name: "The Dog House Pub",
-        vibe: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Brit-owned, proper football bar",
+        vibe: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Brit-owned",
         address: "Calle Dinamarca 44, Juárez (near Roma/Condesa)",
         tip: "Brit-owned, walls lined with TVs and football memorabilia. Will be the central hub for English fans in CDMX. Book ahead.",
       },
@@ -243,6 +342,14 @@ export const cities: City[] = [
         tip: "Plant-filled, inclusive crowd, great beer selection. Screens major sporting events. Good for a pre-match afternoon drink.",
       },
     ],
+    mapLocations: [
+      { name: "Your stay — Dr. Lavista", lat: 19.4180, lng: -99.1480, type: "stay" },
+      { name: "Estadio Azteca", lat: 19.3029, lng: -99.1505, type: "stadium" },
+      { name: "FIFA Fan Fest — El Zócalo", lat: 19.4326, lng: -99.1332, type: "fanzone" },
+      { name: "The Dog House Pub", lat: 19.4260, lng: -99.1580, type: "bar" },
+      { name: "Celtics Pub (Condesa)", lat: 19.4130, lng: -99.1702, type: "bar" },
+      { name: "BeerGarden Roma", lat: 19.4178, lng: -99.1623, type: "bar" },
+    ],
   },
   {
     id: "miami",
@@ -250,6 +357,7 @@ export const cities: City[] = [
     emoji: "🌊",
     country: "USA",
     dates: "7–13 July",
+    coords: [25.79, -80.13],
     stay: {
       name: "Boho Central by the Beach Studio",
       address: "Miami Beach, FL",
@@ -266,7 +374,7 @@ export const cities: City[] = [
       stadium: "Hard Rock Stadium",
       address: "347 Don Shula Dr, Miami Gardens, FL 33056",
       notes:
-        "Uber/Lyft from Miami Beach is ~35–40 mins. The third-place playoff is also at Hard Rock on July 18 if needed. Hard Rock hosts the QF — this is where it gets real.",
+        "Uber/Lyft from Miami Beach is ~35–40 mins. Hard Rock hosts the QF — this is where it gets real.",
     },
     fanzone: {
       name: "FIFA Fan Fest — Bayfront Park",
@@ -294,21 +402,50 @@ export const cities: City[] = [
         tip: "Free FIFA watch parties at Clutch Bar from 6 July onwards. Open-air, massive screens, food vendors. Great pre-match or backup option.",
       },
     ],
+    mapLocations: [
+      { name: "Boho Central — Miami Beach", lat: 25.7907, lng: -80.1300, type: "stay" },
+      { name: "Hard Rock Stadium", lat: 25.9580, lng: -80.2389, type: "stadium" },
+      { name: "FIFA Fan Fest — Bayfront Park", lat: 25.7742, lng: -80.1870, type: "fanzone" },
+      { name: "The Clevelander", address: "Ocean Drive", lat: 25.7796, lng: -80.1300, type: "bar" },
+      { name: "Grails Wynwood", lat: 25.8008, lng: -80.1990, type: "bar" },
+    ],
   },
 ];
 
 export const timeline = [
-  { date: "Fri 26 June", event: "✈️ Fly London → New York (JFK/EWR)", city: "nyc" },
-  { date: "Sat 27 June", event: "⚽ England vs Panama — MetLife Stadium", city: "nyc" },
-  { date: "Sun–Mon 28–30 June", event: "🗽 NYC days — Brooklyn & Manhattan", city: "nyc" },
-  { date: "Tue 1 July", event: "✈️ Fly New York → Atlanta", city: "atlanta" },
-  { date: "Wed 2 July", event: "⚽ England — Round of 32 — Mercedes-Benz Stadium", city: "atlanta" },
-  { date: "Thu 3 July", event: "✈️ Fly Atlanta → Cancún", city: "cancun" },
-  { date: "Fri 4 July", event: "✈️ Fly Cancún → Mexico City", city: "mexico-city" },
-  { date: "Sat–Sun 5–6 July", event: "🌮 Mexico City days + Round of 16", city: "mexico-city" },
+  { date: "Fri 26 June", event: "✈️ Fly London Gatwick → New York JFK (Norse, 13:05–15:55)", city: "nyc" },
+  { date: "Fri 26 June", event: "🌃 230 Fifth Rooftop — arrival drinks", city: "nyc" },
+  { date: "Sat 27 June", event: "⚽ England vs Panama — MetLife Stadium (5pm ET / 10pm BST)", city: "nyc" },
+  { date: "Sun 28 June", event: "🦪 Grand Banks Oyster Bar — Sunday afternoon on the Hudson", city: "nyc" },
+  { date: "Mon 29 June", event: "🗽 Last full day in NYC", city: "nyc" },
+  { date: "Tue 30 June", event: "✈️ Fly New York → Atlanta (JetBlue, 14:55)", city: "atlanta" },
+  { date: "Wed 1 July", event: "⚽ England — Round of 32 — Mercedes-Benz Stadium", city: "atlanta" },
+  { date: "Thu 2 July", event: "✈️ Fly Atlanta → Cancún via Fort Lauderdale (JetBlue, 07:10–11:55)", city: "cancun" },
+  { date: "Thu 2 July", event: "🌴 Arrive Cancún — beach evening", city: "cancun" },
+  { date: "Sat 4 July", event: "✈️ Fly Cancún → Mexico City (Volaris, 10:50)", city: "mexico-city" },
+  { date: "Sun 6 July", event: "⚽ England — Round of 16 — Estadio Azteca", city: "mexico-city" },
   { date: "Mon 7 July", event: "✈️ Fly Mexico City → Miami", city: "miami" },
   { date: "Tue–Thu 8–10 July", event: "🌊 Miami Beach days", city: "miami" },
   { date: "Fri 11 July", event: "⚽ England — Quarterfinal — Hard Rock Stadium", city: "miami" },
   { date: "Sat–Sun 12–13 July", event: "🏖️ Last days in Miami Beach", city: "miami" },
   { date: "Sun 13 July", event: "✈️ Fly Miami → London Heathrow", city: "miami" },
+];
+
+// Journey map route: [lat, lng] pairs for the great-circle route
+export const journeyRoute: [number, number][] = [
+  [51.508, -0.190],   // London Gatwick
+  [40.641, -73.778],  // New York JFK
+  [33.749, -84.388],  // Atlanta
+  [21.162, -86.852],  // Cancún
+  [19.433, -99.133],  // Mexico City
+  [25.796, -80.287],  // Miami
+];
+
+export const journeyStops = [
+  { name: "London Gatwick", coords: [51.508, -0.190] as [number, number], dates: "Depart 26 June" },
+  { name: "New York", coords: [40.641, -73.778] as [number, number], dates: "26 June – 30 June" },
+  { name: "Atlanta", coords: [33.749, -84.388] as [number, number], dates: "30 June – 2 July" },
+  { name: "Cancún", coords: [21.162, -86.852] as [number, number], dates: "2–4 July" },
+  { name: "Mexico City", coords: [19.433, -99.133] as [number, number], dates: "4–7 July" },
+  { name: "Miami", coords: [25.796, -80.287] as [number, number], dates: "7–13 July" },
 ];
