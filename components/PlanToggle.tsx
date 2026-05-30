@@ -69,7 +69,13 @@ export default function PlanToggle() {
           )}
 
           <div className="rounded-2xl overflow-hidden border border-white/10" style={{ height: 420 }}>
-            <JourneyMap route={route} stops={stops} color={routeColor} />
+            <JourneyMap
+              route={route}
+              stops={stops}
+              color={routeColor}
+              center={plan === "a" ? [28, -90] : [36, -97]}
+              zoom={plan === "a" ? 4 : 4}
+            />
           </div>
         </div>
       </section>

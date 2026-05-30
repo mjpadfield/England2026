@@ -323,7 +323,7 @@ export const cities: City[] = [
       date: "Sunday 6 July (TBC)",
       time: "TBC",
       stadium: "Estadio Azteca",
-      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Azteca2010.jpg/1200px-Azteca2010.jpg",
+      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Vista_a%C3%A9rea_del_Estadio_Azteca_-_2026_-_02.jpg/1200px-Vista_a%C3%A9rea_del_Estadio_Azteca_-_2026_-_02.jpg",
       address: "Calzada de Tlalpan 3465, Santa Úrsula Coapa, CDMX",
       notes:
         "Take the Metro Line 2 to Tasqueña, then the tren ligero to Estadio Azteca. Uber also works well. One of football's great cathedrals — 87,000 capacity. Get there early.",

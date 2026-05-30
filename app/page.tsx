@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import PlanToggle from "@/components/PlanToggle";
+import EnglandSquad from "@/components/EnglandSquad";
 
 export default function Home() {
   return (
@@ -48,6 +49,9 @@ export default function Home() {
           <span className="text-white text-xl">↓</span>
         </div>
       </section>
+
+      {/* England squad */}
+      <EnglandSquad />
 
       {/* Plan A/B toggle — map, timeline, city sections */}
       <PlanToggle />

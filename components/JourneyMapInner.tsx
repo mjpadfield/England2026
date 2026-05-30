@@ -10,13 +10,15 @@ type Props = {
   route: [number, number][];
   stops: Stop[];
   color?: string;
+  center?: [number, number];
+  zoom?: number;
 };
 
-export default function JourneyMapInner({ route, stops, color = "#CF081F" }: Props) {
+export default function JourneyMapInner({ route, stops, color = "#CF081F", center = [28, -90], zoom = 4 }: Props) {
   return (
     <MapContainer
-      center={[30, -88]}
-      zoom={3}
+      center={center}
+      zoom={zoom}
       style={{ height: "100%", width: "100%", background: "#0a0a14" }}
       zoomControl={false}
       scrollWheelZoom={false}

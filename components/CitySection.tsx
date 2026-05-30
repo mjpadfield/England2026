@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { City } from "@/lib/data";
 import CityMap from "./CityMap";
 
@@ -18,14 +17,13 @@ export default function CitySection({ city }: { city: City }) {
         {/* Stadium image */}
         {city.match?.stadiumImage && (
           <div className="relative rounded-2xl overflow-hidden mb-6 border border-white/10" style={{ height: 260 }}>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={city.match.stadiumImage}
               alt={city.match.stadium}
-              fill
-              className="object-cover"
-              unoptimized
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/30 to-transparent" />
             <div className="absolute bottom-4 left-5">
               <p className="text-white font-bold text-lg">{city.match.stadium}</p>
               <p className="text-white/60 text-sm">{city.match.round} · {city.match.date}</p>

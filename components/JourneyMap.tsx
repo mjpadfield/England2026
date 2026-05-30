@@ -12,8 +12,10 @@ type Props = {
   route: [number, number][];
   stops: Stop[];
   color?: string;
+  center?: [number, number];
+  zoom?: number;
 };
 
-export default function JourneyMap({ route, stops, color }: Props) {
-  return <Inner route={route} stops={stops} color={color} />;
+export default function JourneyMap({ route, stops, color, center, zoom }: Props) {
+  return <Inner route={route} stops={stops} color={color} center={center} zoom={zoom} />;
 }
