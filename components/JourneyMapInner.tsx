@@ -1,71 +1,46 @@
 "use client";
 import { MapContainer, TileLayer, Polyline, CircleMarker, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { journeyRoute, journeyStops } from "@/lib/data";
 
 const TILE_URL = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
-const TILE_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>';
 
-export default function JourneyMapInner() {
+type Stop = { name: string; coords: [number, number]; dates: string };
+
+type Props = {
+  route: [number, number][];
+  stops: Stop[];
+  color?: string;
+};
+
+export default function JourneyMapInner({ route, stops, color = "#CF081F" }: Props) {
   return (
     <MapContainer
-      center={[30, -70]}
+      center={[30, -88]}
       zoom={3}
       style={{ height: "100%", width: "100%", background: "#0a0a14" }}
       zoomControl={false}
       scrollWheelZoom={false}
-      dragging={true}
       attributionControl={false}
     >
-      <TileLayer url={TILE_URL} attribution={TILE_ATTR} />
-
-      {/* Flight path */}
-      <Polyline
-        positions={journeyRoute}
-        pathOptions={{ color: "#CF081F", weight: 2, opacity: 0.7, dashArray: "6 8" }}
-      />
-
-      {/* City stops */}
-      {journeyStops.map((stop) => (
+      <TileLayer url={TILE_URL} />
+      <Polyline positions={route} pathOptions={{ color, weight: 2, opacity: 0.8, dashArray: "6 8" }} />
+      {stops.map((stop) => (
         <CircleMarker
           key={stop.name}
           center={stop.coords}
-          radius={stop.name === "London Gatwick" ? 5 : 8}
-          pathOptions={{
-            fillColor: stop.name === "London Gatwick" ? "#ffffff" : "#CF081F",
-            fillOpacity: 1,
-            color: "#ffffff",
-            weight: 2,
-          }}
+          radius={8}
+          pathOptions={{ fillColor: color, fillOpacity: 1, color: "#ffffff", weight: 2 }}
         >
-          <Tooltip
-            permanent={true}
-            direction="top"
-            offset={[0, -10]}
-            className="journey-tooltip"
-          >
-            <span style={{ fontWeight: 700, fontSize: "12px", color: "#fff" }}>
-              {stop.name}
-            </span>
+          <Tooltip permanent direction="top" offset={[0, -10]} className="journey-tooltip">
+            <span style={{ fontWeight: 700, fontSize: "12px", color: "#fff" }}>{stop.name}</span>
             <br />
-            <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.6)" }}>
-              {stop.dates}
-            </span>
+            <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.6)" }}>{stop.dates}</span>
           </Tooltip>
         </CircleMarker>
       ))}
-
       <style>{`
-        .journey-tooltip {
-          background: rgba(10,10,20,0.9) !important;
-          border: 1px solid rgba(255,255,255,0.15) !important;
-          border-radius: 8px !important;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
-          padding: 6px 10px !important;
-          white-space: nowrap;
-        }
+        .journey-tooltip { background: rgba(10,10,20,0.9) !important; border: 1px solid rgba(255,255,255,0.15) !important; border-radius: 8px !important; box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important; padding: 6px 10px !important; white-space: nowrap; }
         .journey-tooltip::before { display: none !important; }
-        .leaflet-container { font-family: inherit; }
       `}</style>
     </MapContainer>
   );

@@ -40,6 +40,7 @@ export type City = {
     date: string;
     time: string;
     stadium: string;
+    stadiumImage: string;
     address: string;
     notes: string;
   };
@@ -47,12 +48,14 @@ export type City = {
     name: string;
     address: string;
     notes: string;
+    url?: string;
   };
   bars: {
     name: string;
     vibe: string;
     address: string;
     tip: string;
+    url?: string;
   }[];
   mapLocations: MapLocation[];
 };
@@ -94,16 +97,17 @@ export const cities: City[] = [
       date: "Saturday 27 June",
       time: "5pm ET / 10pm BST",
       stadium: "MetLife Stadium",
+      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Metlife_stadium_%28Aerial_view%29.jpg/1200px-Metlife_stadium_%28Aerial_view%29.jpg",
       address: "1 MetLife Stadium Dr, East Rutherford, NJ",
       notes:
         "Bus from Port Authority Bus Terminal at 2pm — direct to MetLife, ~45 mins. Get there early to grab your spot. England fans congregate in the south end.",
     },
     fanzone: {
-      name: "FIFA Fan Zone Queens + Hudson Yards Screen",
-      address:
-        "USTA Billie Jean King National Tennis Center, Flushing Meadows; Hudson Yards, Manhattan",
+      name: "FIFA Fan Zone Queens + Hudson Yards",
+      address: "USTA Billie Jean King Center, Queens / Hudson Yards, Manhattan",
       notes:
-        "Queens fan zone holds 10,000 and runs 17–28 June — pre-register at nynjfwc26.com. Hudson Yards has a free 30-foot outdoor screen with no registration needed. Rockefeller Center also has a Fan Village for the full tournament.",
+        "Queens fan zone holds 10,000 — pre-register online. Hudson Yards has a free 30-foot outdoor screen with no registration. Rockefeller Center also has a Fan Village for the full tournament.",
+      url: "https://www.nynjfwc26.com",
     },
     bars: [
       {
@@ -111,6 +115,21 @@ export const cities: City[] = [
         vibe: "🏆 The one",
         address: "132 Havemeyer St, Williamsburg (5 min walk from your place)",
         tip: "NYC's best soccer bar — 15 years deep, proper matchday atmosphere. Book ahead for England games.",
+        url: "https://banterbrooklyn.com",
+      },
+      {
+        name: "230 Fifth Rooftop Bar",
+        vibe: "🌃 Friday night",
+        address: "230 5th Ave, Flatiron, Manhattan",
+        tip: "Rooftop bar with panoramic Manhattan views — perfect for Friday night arrival drinks. Empire State Building right in front of you. Book ahead.",
+        url: "https://www.230-fifth.com",
+      },
+      {
+        name: "Grand Banks Oyster Bar",
+        vibe: "🦪 Sunday afternoon",
+        address: "Pier 25, Hudson River Park, Tribeca",
+        tip: "Oyster bar on a beautiful schooner moored on the Hudson. Ideal for a long Sunday afternoon. Book in advance.",
+        url: "https://grandbanksnyc.com",
       },
       {
         name: "Kent Ale House",
@@ -122,25 +141,14 @@ export const cities: City[] = [
         name: "The Monro Pub",
         vibe: "☀️ Backyard vibes",
         address: "132 Union St, Park Slope, Brooklyn",
-        tip: "Has a lovely backyard — great for a pint in the sun if England have already won.",
-      },
-      {
-        name: "230 Fifth Rooftop Bar",
-        vibe: "🌃 Friday night",
-        address: "230 5th Ave, Flatiron, Manhattan",
-        tip: "Rooftop bar with panoramic Manhattan views — perfect for Friday night arrival drinks. Empire State Building right in front of you. Book a table ahead.",
-      },
-      {
-        name: "Grand Banks Oyster Bar",
-        vibe: "🦪 Sunday afternoon",
-        address: "Pier 25, Hudson River Park, Tribeca",
-        tip: "Oyster bar on a beautiful schooner moored on the Hudson. Ideal for a long Sunday afternoon — oysters, cold drinks, and views across the river. Book in advance.",
+        tip: "Has a lovely backyard — great for a pint in the sun. A proper neighbourhood pub.",
       },
       {
         name: "Legends (Football Factory)",
         vibe: "🎉 Stadium atmosphere",
         address: "6 W 33rd St, Midtown Manhattan",
-        tip: "Multi-level, 30+ screens, supporters groups from every nation. Closest thing to a stadium inside a bar. Worth the trip to Manhattan for a big match.",
+        tip: "Multi-level, 30+ screens, supporters groups from every nation. Closest thing to a stadium inside a bar.",
+        url: "https://www.legendsnyc.com",
       },
     ],
     mapLocations: [
@@ -189,22 +197,25 @@ export const cities: City[] = [
       date: "Wednesday 1 July (TBC)",
       time: "TBC",
       stadium: "Mercedes-Benz Stadium",
+      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg/1200px-Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg",
       address: "1 AMB Dr NW, Atlanta, GA 30313",
       notes:
-        "Mercedes-Benz Stadium is a 15-min rideshare from Wade St. STATS Brewpub and Der Biergarten are right next to the stadium for pre-match. Centennial Olympic Park Fan Zone is a 5-min walk from the stadium.",
+        "Mercedes-Benz Stadium is a 15-min rideshare from Wade St. STATS Brewpub and Der Biergarten are right next to the stadium for pre-match. Centennial Olympic Park Fan Zone is a 5-min walk.",
     },
     fanzone: {
       name: "FIFA Fan Fest — Centennial Olympic Park",
       address: "265 Park Ave W NW, Atlanta, GA 30313",
       notes:
-        "Free and open to the public, runs every match day plus the day before. Giant screens, food, entertainment. 5-min walk from Mercedes-Benz Stadium — perfect for a full matchday experience.",
+        "Free and open to the public, runs every match day plus the day before. Giant screens, food, entertainment. 5-min walk from Mercedes-Benz Stadium.",
+      url: "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/fifa-fan-festival",
     },
     bars: [
       {
         name: "Brewhouse Cafe",
         vibe: "🏆 America's Best Soccer Bar",
         address: "401 Moreland Ave NE, Little Five Points",
-        tip: "Voted America's Best Soccer Bar by Men in Blazers 2024-25. Opens 5am for big matches. Second location opening in South Downtown steps from the stadium.",
+        tip: "Voted America's Best Soccer Bar by Men in Blazers 2024-25. Opens 5am for big matches.",
+        url: "https://www.brewhousecafe.com",
       },
       {
         name: "STATS Brewpub",
@@ -263,14 +274,14 @@ export const cities: City[] = [
       name: "Cancún Beach Bars",
       address: "Zona Hotelera",
       notes:
-        "No official FIFA Fan Fest in Cancún, but the beach strip has huge screens outside many bars. Carlos'n Charlie's and Señor Frog's will be showing all matches — touristy but fun for a night.",
+        "No official FIFA Fan Fest, but the beach strip has huge screens outside many bars. Touristy but fun for a night.",
     },
     bars: [
       {
         name: "The City Disco & Bar",
         vibe: "🎵 Beach club",
         address: "Blvd. Kukulcán Km 9.5, Zona Hotelera",
-        tip: "One of the biggest outdoor screens in the Zona Hotelera. Good for watching a match with a frozen margarita in hand.",
+        tip: "One of the biggest outdoor screens in the Zona Hotelera. Good for watching a match with a frozen margarita.",
       },
       {
         name: "Señor Frog's",
@@ -312,15 +323,17 @@ export const cities: City[] = [
       date: "Sunday 6 July (TBC)",
       time: "TBC",
       stadium: "Estadio Azteca",
+      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Azteca2010.jpg/1200px-Azteca2010.jpg",
       address: "Calzada de Tlalpan 3465, Santa Úrsula Coapa, CDMX",
       notes:
-        "Take the Metro Line 2 to Tasqueña, then the tren ligero to Estadio Azteca. Or rideshare (Uber works well in CDMX). The Azteca atmosphere is unlike anywhere else in the world — one of football's great cathedrals. Get there early.",
+        "Take the Metro Line 2 to Tasqueña, then the tren ligero to Estadio Azteca. Uber also works well. One of football's great cathedrals — 87,000 capacity. Get there early.",
     },
     fanzone: {
       name: "FIFA Fan Fest — El Zócalo",
       address: "Plaza de la Constitución, Centro Histórico, CDMX",
       notes:
-        "Free entry, no registration. Mexico's Fan Fest is at the Zócalo — the main square surrounded by incredible colonial architecture. Every match screened live. Expect massive, electric crowds.",
+        "Free entry, no registration. Surrounded by incredible colonial architecture. Expect massive, electric crowds for any Mexico game.",
+      url: "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/fifa-fan-festival",
     },
     bars: [
       {
@@ -333,13 +346,13 @@ export const cities: City[] = [
         name: "Celtics Pub",
         vibe: "🍺 Local favourite",
         address: "Ámsterdam 17, Condesa",
-        tip: "Screens everywhere, lively crowd, rooftop seating. A 10-min walk from Parque México. Popular with expats and locals alike.",
+        tip: "Screens everywhere, lively crowd, rooftop seating. A 10-min walk from Parque México.",
       },
       {
         name: "BeerGarden Roma",
         vibe: "🌿 Hip & relaxed",
         address: "Tonalá 10, Roma Norte",
-        tip: "Plant-filled, inclusive crowd, great beer selection. Screens major sporting events. Good for a pre-match afternoon drink.",
+        tip: "Plant-filled, inclusive crowd, great beer selection. Good for a pre-match afternoon drink.",
       },
     ],
     mapLocations: [
@@ -372,6 +385,7 @@ export const cities: City[] = [
       date: "Friday 11 July (TBC)",
       time: "TBC",
       stadium: "Hard Rock Stadium",
+      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Hard_Rock_Stadium_for_Super_Bowl_LIV_%2849606710103%29.jpg/1200px-Hard_Rock_Stadium_for_Super_Bowl_LIV_%2849606710103%29.jpg",
       address: "347 Don Shula Dr, Miami Gardens, FL 33056",
       notes:
         "Uber/Lyft from Miami Beach is ~35–40 mins. Hard Rock hosts the QF — this is where it gets real.",
@@ -380,26 +394,29 @@ export const cities: City[] = [
       name: "FIFA Fan Fest — Bayfront Park",
       address: "301 Biscayne Blvd, Downtown Miami",
       notes:
-        "On Biscayne Bay with incredible views. Free entry. Wynwood Marketplace is also hosting free FIFA watch parties at Clutch Bar from 6 July — massive screens, food vendors, open-air.",
+        "On Biscayne Bay with incredible views. Free entry. Wynwood Marketplace also hosting free watch parties from 6 July.",
+      url: "https://www.bayfrontparkmiami.com",
     },
     bars: [
       {
         name: "The Clevelander",
         vibe: "🏖️ South Beach icon",
         address: "1020 Ocean Dr, Miami Beach (near your place)",
-        tip: "20+ screens including a giant 20ft LED, DJ sets, pool access. Walking distance from your studio. Best spot for a matchday that turns into a party.",
+        tip: "20+ screens, giant 20ft LED, DJ sets, pool access. Walking distance from your studio.",
+        url: "https://www.clevelander.com",
       },
       {
         name: "Grails Wynwood",
         vibe: "📺 Best screens in Miami",
-        address: "2250 NW 2nd Ave, Wynwood",
-        tip: "75+ TVs, no cover charge for any match. Shows every World Cup game with full audio. The most dedicated soccer bar in Miami.",
+        address: "2800 N Miami Ave, Wynwood",
+        tip: "75+ TVs, no cover charge for any match. The most dedicated soccer bar in Miami.",
+        url: "https://grailsmiami.com",
       },
       {
         name: "Wynwood Marketplace",
         vibe: "🎉 Free watch parties",
         address: "2250 NW 2nd Ave, Wynwood",
-        tip: "Free FIFA watch parties at Clutch Bar from 6 July onwards. Open-air, massive screens, food vendors. Great pre-match or backup option.",
+        tip: "Free FIFA watch parties at Clutch Bar from 6 July onwards. Open-air, massive screens, food vendors.",
       },
     ],
     mapLocations: [
@@ -412,28 +429,37 @@ export const cities: City[] = [
   },
 ];
 
-export const timeline = [
+export const planATimeline = [
   { date: "Fri 26 June", event: "✈️ Fly London Gatwick → New York JFK (Norse, 13:05–15:55)", city: "nyc" },
   { date: "Fri 26 June", event: "🌃 230 Fifth Rooftop — arrival drinks", city: "nyc" },
   { date: "Sat 27 June", event: "⚽ England vs Panama — MetLife Stadium (5pm ET / 10pm BST)", city: "nyc" },
-  { date: "Sun 28 June", event: "🦪 Grand Banks Oyster Bar — Sunday afternoon on the Hudson", city: "nyc" },
+  { date: "Sun 28 June", event: "🦪 Grand Banks Oyster Bar — Sunday afternoon", city: "nyc" },
   { date: "Mon 29 June", event: "🗽 Last full day in NYC", city: "nyc" },
   { date: "Tue 30 June", event: "✈️ Fly New York → Atlanta (JetBlue, 14:55)", city: "atlanta" },
   { date: "Wed 1 July", event: "⚽ England — Round of 32 — Mercedes-Benz Stadium", city: "atlanta" },
   { date: "Thu 2 July", event: "✈️ Fly Atlanta → Cancún via Fort Lauderdale (JetBlue, 07:10–11:55)", city: "cancun" },
-  { date: "Thu 2 July", event: "🌴 Arrive Cancún — beach evening", city: "cancun" },
   { date: "Sat 4 July", event: "✈️ Fly Cancún → Mexico City (Volaris, 10:50)", city: "mexico-city" },
   { date: "Sun 6 July", event: "⚽ England — Round of 16 — Estadio Azteca", city: "mexico-city" },
   { date: "Mon 7 July", event: "✈️ Fly Mexico City → Miami", city: "miami" },
-  { date: "Tue–Thu 8–10 July", event: "🌊 Miami Beach days", city: "miami" },
   { date: "Fri 11 July", event: "⚽ England — Quarterfinal — Hard Rock Stadium", city: "miami" },
-  { date: "Sat–Sun 12–13 July", event: "🏖️ Last days in Miami Beach", city: "miami" },
   { date: "Sun 13 July", event: "✈️ Fly Miami → London Heathrow", city: "miami" },
 ];
 
-// Journey map route: [lat, lng] pairs for the great-circle route
-export const journeyRoute: [number, number][] = [
-  [51.508, -0.190],   // London Gatwick
+export const planBTimeline = [
+  { date: "Fri 26 June", event: "✈️ Fly London Gatwick → New York JFK (Norse, 13:05–15:55)", city: "nyc" },
+  { date: "Fri 26 June", event: "🌃 230 Fifth Rooftop — arrival drinks", city: "nyc" },
+  { date: "Sat 27 June", event: "⚽ England vs Panama — MetLife Stadium (5pm ET / 10pm BST)", city: "nyc" },
+  { date: "Sun 28 June", event: "🦪 Grand Banks Oyster Bar — Sunday afternoon", city: "nyc" },
+  { date: "Mon–Tue 29–30 June", event: "🗽 NYC → travel to Toronto", city: "toronto" },
+  { date: "Wed 2 July", event: "⚽ England — Round of 32 — BMO Field, Toronto (7pm ET)", city: "toronto" },
+  { date: "Thu–Sat 3–5 July", event: "🤠 Travel to Dallas", city: "dallas" },
+  { date: "Sun 6 July", event: "⚽ England — Round of 16 — AT&T Stadium, Dallas (2pm CT)", city: "dallas" },
+  { date: "Mon–Wed 7–9 July", event: "🌴 Travel to Los Angeles", city: "la" },
+  { date: "Thu 10 July", event: "⚽ England — Quarterfinal — SoFi Stadium, LA (12pm PT)", city: "la" },
+];
+
+// Plan A route: NYC onwards only
+export const planARoute: [number, number][] = [
   [40.641, -73.778],  // New York JFK
   [33.749, -84.388],  // Atlanta
   [21.162, -86.852],  // Cancún
@@ -441,11 +467,25 @@ export const journeyRoute: [number, number][] = [
   [25.796, -80.287],  // Miami
 ];
 
-export const journeyStops = [
-  { name: "London Gatwick", coords: [51.508, -0.190] as [number, number], dates: "Depart 26 June" },
+export const planAStops = [
   { name: "New York", coords: [40.641, -73.778] as [number, number], dates: "26 June – 30 June" },
   { name: "Atlanta", coords: [33.749, -84.388] as [number, number], dates: "30 June – 2 July" },
   { name: "Cancún", coords: [21.162, -86.852] as [number, number], dates: "2–4 July" },
   { name: "Mexico City", coords: [19.433, -99.133] as [number, number], dates: "4–7 July" },
   { name: "Miami", coords: [25.796, -80.287] as [number, number], dates: "7–13 July" },
+];
+
+// Plan B route
+export const planBRoute: [number, number][] = [
+  [40.641, -73.778],  // New York
+  [43.633, -79.418],  // Toronto BMO Field
+  [32.748, -97.093],  // Dallas AT&T Stadium
+  [33.953, -118.339], // SoFi Stadium LA
+];
+
+export const planBStops = [
+  { name: "New York", coords: [40.641, -73.778] as [number, number], dates: "26 June – 30 June" },
+  { name: "Toronto", coords: [43.633, -79.418] as [number, number], dates: "~30 June – 3 July" },
+  { name: "Dallas", coords: [32.748, -97.093] as [number, number], dates: "~4–7 July" },
+  { name: "Los Angeles", coords: [33.953, -118.339] as [number, number], dates: "~8–11 July" },
 ];

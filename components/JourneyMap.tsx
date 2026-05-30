@@ -1,15 +1,19 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const JourneyMapInner = dynamic(() => import("./JourneyMapInner"), {
+const Inner = dynamic(() => import("./JourneyMapInner"), {
   ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center bg-[#0d0d1a] rounded-2xl">
-      <span className="text-white/30 text-sm">Loading map…</span>
-    </div>
-  ),
+  loading: () => <div className="w-full h-full flex items-center justify-center bg-[#0d0d1a]"><span className="text-white/30 text-sm">Loading map…</span></div>,
 });
 
-export default function JourneyMap() {
-  return <JourneyMapInner />;
+type Stop = { name: string; coords: [number, number]; dates: string };
+
+type Props = {
+  route: [number, number][];
+  stops: Stop[];
+  color?: string;
+};
+
+export default function JourneyMap({ route, stops, color }: Props) {
+  return <Inner route={route} stops={stops} color={color} />;
 }
