@@ -60,13 +60,40 @@ export default function CityFixtures({ city, fixtures }: { city: City; fixtures:
         Highlighted games are in {city.name} — you could go in person. UK time shown underneath.
       </p>
 
-      <div className="space-y-5">
-        {days.map((day) => (
-          <div key={day.date}>
-            <p className="text-white/40 text-xs font-semibold uppercase tracking-wide mb-2">
-              {dayLabel(day.matches[0].kickoff, tz)}
-            </p>
-            <div className="space-y-2">
+      <div className="space-y-2">
+        {days.map((day) => {
+          const hereCount = day.matches.filter((f) => f.cityId === city.id).length;
+          return (
+          <details
+            key={day.date}
+            open={hereCount > 0}
+            className="group bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden"
+          >
+            <summary className="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden hover:bg-white/[0.04] transition-colors">
+              <span className="text-white text-sm font-semibold">
+                {dayLabel(day.matches[0].kickoff, tz)}
+              </span>
+              <span className="flex items-center gap-2 shrink-0">
+                {hereCount > 0 && (
+                  <span className="text-england-red text-[10px] font-bold uppercase tracking-wide">
+                    {hereCount} in {city.name}
+                  </span>
+                )}
+                <span className="text-white/40 text-xs">
+                  {day.matches.length} {day.matches.length === 1 ? "game" : "games"}
+                </span>
+                <svg
+                  className="w-4 h-4 text-white/40 transition-transform group-open:rotate-180"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div className="space-y-2 px-3 pb-3 pt-1">
               {day.matches.map((f) => {
                 const here = f.cityId === city.id;
                 return (
@@ -119,8 +146,9 @@ export default function CityFixtures({ city, fixtures }: { city: City; fixtures:
                 );
               })}
             </div>
-          </div>
-        ))}
+          </details>
+          );
+        })}
       </div>
     </div>
   );
