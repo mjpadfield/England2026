@@ -26,6 +26,8 @@ export type Fixture = {
   isKnockout: boolean;
   home: string; // team name, or friendly placeholder for knockouts
   away: string;
+  homeFlag?: string; // flag image URL — only set when the team is known
+  awayFlag?: string;
   stadium: string;
   venueCity: string;
   cityId?: string; // set when the venue is one of the trip cities → highlighted
@@ -34,6 +36,10 @@ export type Fixture = {
 
 function desc(arr: { Description: string }[] | null | undefined): string | null {
   return arr && arr.length ? arr[0].Description : null;
+}
+
+function flag(code: string | null | undefined): string | undefined {
+  return code ? `https://api.fifa.com/api/v3/picture/flags-sq-4/${code}` : undefined;
 }
 
 // Turn FIFA knockout placeholders ("1I", "2H", "3CDFGH", "W76", "RU101") into readable text.
@@ -53,8 +59,8 @@ type RawMatch = {
   Date: string;
   StageName: { Description: string }[];
   GroupName: { Description: string }[] | null;
-  Home: { TeamName: { Description: string }[] } | null;
-  Away: { TeamName: { Description: string }[] } | null;
+  Home: { TeamName: { Description: string }[]; IdCountry: string } | null;
+  Away: { TeamName: { Description: string }[]; IdCountry: string } | null;
   PlaceHolderA?: string | null;
   PlaceHolderB?: string | null;
   Stadium: {
@@ -90,6 +96,8 @@ export async function getFixtures(): Promise<Fixture[]> {
       isKnockout,
       home,
       away,
+      homeFlag: m.Home ? flag(m.Home.IdCountry) : undefined,
+      awayFlag: m.Away ? flag(m.Away.IdCountry) : undefined,
       stadium: desc(m.Stadium.Name) ?? "",
       venueCity,
       cityId: CITY_BY_VENUE[venueCity],

@@ -94,29 +94,6 @@ export default function CitySection({ city, fixtures }: { city: City; fixtures: 
           </Card>
         </div>
 
-        {/* Bars */}
-        <div className="mt-6">
-          <h3 className="text-white/50 text-xs uppercase tracking-widest mb-4">🍺 Recommended Bars</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {city.bars.map((bar) => (
-              <div key={bar.name} className="card-glass rounded-xl p-5">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <p className="text-white font-semibold leading-tight">{bar.name}</p>
-                  <span className="text-xs bg-white/10 text-white/60 rounded-full px-2 py-0.5 whitespace-nowrap shrink-0">{bar.vibe}</span>
-                </div>
-                <p className="text-white/40 text-xs mb-2">{bar.address}</p>
-                <p className="text-white/70 text-sm leading-relaxed mb-3">{bar.tip}</p>
-                {bar.url && (
-                  <a href={bar.url} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors">
-                    Visit website ↗
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Matches on while you're in this city */}
         <CityFixtures city={city} fixtures={fixtures} />
       </div>

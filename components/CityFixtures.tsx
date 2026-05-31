@@ -90,9 +90,18 @@ export default function CityFixtures({ city, fixtures }: { city: City; fixtures:
 
                     {/* Match */}
                     <div className="min-w-0 flex-1">
-                      <p className="text-white text-sm font-medium leading-tight">
-                        {f.isEngland && "🏴󠁧󠁢󠁥󠁮󠁧󠁿 "}
-                        {f.home} <span className="text-white/40">v</span> {f.away}
+                      <p className="text-white text-sm font-medium leading-tight flex items-center gap-1.5 flex-wrap">
+                        {f.homeFlag && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={f.homeFlag} alt="" className="w-4 h-4 rounded-sm shrink-0" />
+                        )}
+                        <span>{f.home}</span>
+                        <span className="text-white/40">v</span>
+                        {f.awayFlag && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={f.awayFlag} alt="" className="w-4 h-4 rounded-sm shrink-0" />
+                        )}
+                        <span>{f.away}</span>
                       </p>
                       <p className="text-white/40 text-xs truncate">
                         {f.stadium} · {f.venueCity}
