@@ -1,7 +1,9 @@
 import type { City } from "@/lib/data";
+import type { Fixture } from "@/lib/fixtures";
 import CityMap from "./CityMap";
+import CityFixtures from "./CityFixtures";
 
-export default function CitySection({ city }: { city: City }) {
+export default function CitySection({ city, fixtures }: { city: City; fixtures: Fixture[] }) {
   return (
     <section id={city.id} className="py-20 px-4 border-t border-white/5">
       <div className="max-w-5xl mx-auto">
@@ -114,6 +116,9 @@ export default function CitySection({ city }: { city: City }) {
             ))}
           </div>
         </div>
+
+        {/* Matches on while you're in this city */}
+        <CityFixtures city={city} fixtures={fixtures} />
       </div>
     </section>
   );

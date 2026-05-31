@@ -8,6 +8,8 @@ export const planBCities: City[] = [
     emoji: "🍁",
     country: "Canada",
     dates: "~30 June – 3 July",
+    timezone: "America/Toronto",
+    window: { start: "2026-06-30", end: "2026-07-03" },
     coords: [43.653, -79.383],
     stay: {
       name: "TBC",
@@ -68,6 +70,8 @@ export const planBCities: City[] = [
     emoji: "🤠",
     country: "USA",
     dates: "~4–7 July",
+    timezone: "America/Chicago",
+    window: { start: "2026-07-04", end: "2026-07-07" },
     coords: [32.748, -97.093],
     stay: {
       name: "TBC",
@@ -127,6 +131,8 @@ export const planBCities: City[] = [
     emoji: "🌴",
     country: "USA",
     dates: "~8–11 July",
+    timezone: "America/Los_Angeles",
+    window: { start: "2026-07-08", end: "2026-07-11" },
     coords: [34.052, -118.243],
     stay: {
       name: "TBC",

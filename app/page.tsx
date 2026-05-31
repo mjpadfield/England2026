@@ -1,8 +1,9 @@
 import Nav from "@/components/Nav";
 import PlanToggle from "@/components/PlanToggle";
-import EnglandSquad from "@/components/EnglandSquad";
+import { getFixtures } from "@/lib/fixtures";
 
-export default function Home() {
+export default async function Home() {
+  const fixtures = await getFixtures();
   return (
     <main className="min-h-screen">
       <Nav />
@@ -50,11 +51,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* England squad */}
-      <EnglandSquad />
-
       {/* Plan A/B toggle — map, timeline, city sections */}
-      <PlanToggle />
+      <PlanToggle fixtures={fixtures} />
 
       {/* Footer */}
       <footer className="border-t border-white/5 py-12 text-center">

@@ -22,6 +22,8 @@ export type City = {
   emoji: string;
   country: string;
   dates: string;
+  timezone: string; // IANA timezone — used to localize match kickoff times
+  window: { start: string; end: string }; // ISO dates (inclusive) of the stay
   coords: [number, number];
   stay: {
     name: string;
@@ -67,6 +69,8 @@ export const cities: City[] = [
     emoji: "🗽",
     country: "USA",
     dates: "26–30 June",
+    timezone: "America/New_York",
+    window: { start: "2026-06-26", end: "2026-06-30" },
     coords: [40.73, -73.98],
     stay: {
       name: "Friend's place",
@@ -97,7 +101,7 @@ export const cities: City[] = [
       date: "Saturday 27 June",
       time: "5pm ET / 10pm BST",
       stadium: "MetLife Stadium",
-      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Metlife_stadium_%28Aerial_view%29.jpg/1200px-Metlife_stadium_%28Aerial_view%29.jpg",
+      stadiumImage: "/stadiums/metlife.jpg",
       address: "1 MetLife Stadium Dr, East Rutherford, NJ",
       notes:
         "Bus from Port Authority Bus Terminal at 2pm — direct to MetLife, ~45 mins. Get there early to grab your spot. England fans congregate in the south end.",
@@ -168,6 +172,8 @@ export const cities: City[] = [
     emoji: "🍑",
     country: "USA",
     dates: "30 June – 2 July",
+    timezone: "America/New_York",
+    window: { start: "2026-06-30", end: "2026-07-02" },
     coords: [33.749, -84.388],
     stay: {
       name: "Accommodation",
@@ -197,7 +203,7 @@ export const cities: City[] = [
       date: "Wednesday 1 July (TBC)",
       time: "TBC",
       stadium: "Mercedes-Benz Stadium",
-      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg/1200px-Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg",
+      stadiumImage: "/stadiums/mercedes-benz.jpg",
       address: "1 AMB Dr NW, Atlanta, GA 30313",
       notes:
         "Mercedes-Benz Stadium is a 15-min rideshare from Wade St. STATS Brewpub and Der Biergarten are right next to the stadium for pre-match. Centennial Olympic Park Fan Zone is a 5-min walk.",
@@ -244,6 +250,8 @@ export const cities: City[] = [
     emoji: "🌴",
     country: "Mexico",
     dates: "2–4 July",
+    timezone: "America/Cancun",
+    window: { start: "2026-07-02", end: "2026-07-04" },
     coords: [21.1619, -86.8515],
     stay: {
       name: "Transit stop",
@@ -301,6 +309,8 @@ export const cities: City[] = [
     emoji: "🌮",
     country: "Mexico",
     dates: "4–7 July",
+    timezone: "America/Mexico_City",
+    window: { start: "2026-07-04", end: "2026-07-07" },
     coords: [19.4326, -99.1332],
     stay: {
       name: "Apartment",
@@ -323,7 +333,7 @@ export const cities: City[] = [
       date: "Sunday 6 July (TBC)",
       time: "TBC",
       stadium: "Estadio Azteca",
-      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Vista_a%C3%A9rea_del_Estadio_Azteca_-_2026_-_02.jpg/1200px-Vista_a%C3%A9rea_del_Estadio_Azteca_-_2026_-_02.jpg",
+      stadiumImage: "/stadiums/azteca.jpg",
       address: "Calzada de Tlalpan 3465, Santa Úrsula Coapa, CDMX",
       notes:
         "Take the Metro Line 2 to Tasqueña, then the tren ligero to Estadio Azteca. Uber also works well. One of football's great cathedrals — 87,000 capacity. Get there early.",
@@ -370,6 +380,8 @@ export const cities: City[] = [
     emoji: "🌊",
     country: "USA",
     dates: "7–13 July",
+    timezone: "America/New_York",
+    window: { start: "2026-07-07", end: "2026-07-13" },
     coords: [25.79, -80.13],
     stay: {
       name: "Boho Central by the Beach Studio",
@@ -385,7 +397,7 @@ export const cities: City[] = [
       date: "Friday 11 July (TBC)",
       time: "TBC",
       stadium: "Hard Rock Stadium",
-      stadiumImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Hard_Rock_Stadium_for_Super_Bowl_LIV_%2849606710103%29.jpg/1200px-Hard_Rock_Stadium_for_Super_Bowl_LIV_%2849606710103%29.jpg",
+      stadiumImage: "/stadiums/hardrock.jpg",
       address: "347 Don Shula Dr, Miami Gardens, FL 33056",
       notes:
         "Uber/Lyft from Miami Beach is ~35–40 mins. Hard Rock hosts the QF — this is where it gets real.",

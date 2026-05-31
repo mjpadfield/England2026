@@ -3,6 +3,7 @@ import { useState } from "react";
 import JourneyMap from "./JourneyMap";
 import CitySection from "./CitySection";
 import { cities, planATimeline, planBTimeline, planARoute, planAStops, planBRoute, planBStops } from "@/lib/data";
+import type { Fixture } from "@/lib/fixtures";
 import { planBCities } from "@/lib/planb-data";
 
 const nycCity = cities.find((c) => c.id === "nyc")!;
@@ -10,7 +11,7 @@ const planACities = cities.filter((c) => c.id !== "nyc");
 
 type Plan = "a" | "b";
 
-export default function PlanToggle() {
+export default function PlanToggle({ fixtures }: { fixtures: Fixture[] }) {
   const [plan, setPlan] = useState<Plan>("a");
 
   const timeline = plan === "a" ? planATimeline : planBTimeline;
@@ -111,11 +112,11 @@ export default function PlanToggle() {
       </section>
 
       {/* NYC — always shown */}
-      <CitySection city={nycCity} />
+      <CitySection city={nycCity} fixtures={fixtures} />
 
       {/* Plan-specific cities */}
       {afterNycCities.map((city) => (
-        <CitySection key={city.id} city={city} />
+        <CitySection key={city.id} city={city} fixtures={fixtures} />
       ))}
     </>
   );
