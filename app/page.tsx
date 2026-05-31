@@ -18,7 +18,8 @@ export default async function Home() {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-7xl md:text-9xl select-none mb-6 block">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/three-lions.svg" alt="England — Three Lions crest" className="mx-auto mb-6 h-28 md:h-44 w-auto drop-shadow-xl select-none" />
           <h1 className="text-4xl md:text-7xl font-black text-white tracking-tight mb-4 text-shadow">
             England<span className="text-england-red"> 2026</span>
           </h1>
@@ -66,7 +67,8 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="border-t border-white/5 py-12 text-center">
-        <p className="text-4xl mb-4">🏴󠁧󠁢󠁥󠁮󠁧󠁿</p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/three-lions.svg" alt="England — Three Lions crest" className="h-12 w-auto mx-auto mb-4 select-none" />
         <p className="text-white/30 text-sm">It's coming home. Via New York, Atlanta, Mexico City and Miami.</p>
         <p className="text-white/20 text-xs mt-2">FIFA World Cup 2026 · 26 June – 13 July</p>
       </footer>

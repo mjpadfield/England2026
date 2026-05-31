@@ -7,33 +7,32 @@ export default function CitySection({ city, fixtures }: { city: City; fixtures: 
   return (
     <section id={city.id} className="py-20 px-4 border-t border-white/5 scroll-mt-16">
       <div className="max-w-5xl mx-auto">
-        {/* City banner */}
-        <div className="relative rounded-2xl overflow-hidden mb-10 border border-white/10" style={{ height: 220 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={city.image} alt={city.name} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/40 to-transparent" />
-          <div className="absolute bottom-5 left-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-white text-shadow">{city.name}</h2>
-            <p className="text-white/70 text-sm mt-0.5">{city.country} · {city.dates}</p>
-          </div>
-        </div>
-
-        {/* Stadium image */}
-        {city.match?.stadiumImage && (
-          <div className="relative rounded-2xl overflow-hidden mb-6 border border-white/10" style={{ height: 260 }}>
+        {/* Photos — city alongside its stadium */}
+        <div className={`grid gap-4 mb-8 ${city.match?.stadiumImage ? "sm:grid-cols-2" : "grid-cols-1"}`}>
+          {/* City */}
+          <figure className={`relative rounded-2xl overflow-hidden border border-white/10 ${city.match?.stadiumImage ? "aspect-[4/3]" : "aspect-[16/7]"}`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={city.match.stadiumImage}
-              alt={city.match.stadium}
-              className="w-full h-full object-cover"
-            />
+            <img src={city.image} alt={city.name} className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/30 to-transparent" />
-            <div className="absolute bottom-4 left-5">
-              <p className="text-white font-bold text-lg">{city.match.stadium}</p>
-              <p className="text-white/60 text-sm">{city.match.round} · {city.match.date}</p>
-            </div>
-          </div>
-        )}
+            <figcaption className="absolute bottom-4 left-5 right-5">
+              <h2 className="text-2xl md:text-3xl font-bold text-white text-shadow">{city.name}</h2>
+              <p className="text-white/70 text-sm mt-0.5">{city.country} · {city.dates}</p>
+            </figcaption>
+          </figure>
+
+          {/* Stadium */}
+          {city.match?.stadiumImage && (
+            <figure className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={city.match.stadiumImage} alt={city.match.stadium} className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/30 to-transparent" />
+              <figcaption className="absolute bottom-4 left-5 right-5">
+                <p className="text-white font-bold text-lg text-shadow">{city.match.stadium}</p>
+                <p className="text-white/70 text-sm">{city.match.round} · {city.match.date}</p>
+              </figcaption>
+            </figure>
+          )}
+        </div>
 
         {/* City map */}
         <div className="rounded-2xl overflow-hidden mb-4 border border-white/10" style={{ height: 300 }}>
