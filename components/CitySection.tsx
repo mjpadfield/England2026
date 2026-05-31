@@ -5,7 +5,7 @@ import CityFixtures from "./CityFixtures";
 
 export default function CitySection({ city, fixtures }: { city: City; fixtures: Fixture[] }) {
   return (
-    <section id={city.id} className="py-20 px-4 border-t border-white/5">
+    <section id={city.id} className="py-20 px-4 border-t border-white/5 scroll-mt-16">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-10 flex items-center gap-3">

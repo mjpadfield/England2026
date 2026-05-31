@@ -82,7 +82,7 @@ export default function PlanToggle({ fixtures }: { fixtures: Fixture[] }) {
       </section>
 
       {/* Itinerary timeline */}
-      <section id="itinerary" className="py-16 px-4 border-t border-white/5">
+      <section id="itinerary" className="py-16 px-4 border-t border-white/5 scroll-mt-16">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Full Itinerary</h2>
           <p className="text-white/40 text-sm mb-10">

@@ -24,20 +24,30 @@ export default async function Home() {
           </h1>
           <p className="text-lg md:text-2xl text-white/70 mb-2 font-light">The World Cup Tour</p>
           <p className="text-white/40 text-sm md:text-base tracking-widest uppercase mb-10">
-            New York · Atlanta · Mexico City · Miami
+            {[
+              { label: "New York", href: "#nyc" },
+              { label: "Atlanta", href: "#atlanta" },
+              { label: "Mexico City", href: "#mexico-city" },
+              { label: "Miami", href: "#miami" },
+            ].map((c, i) => (
+              <span key={c.href}>
+                {i > 0 && <span className="text-white/20"> · </span>}
+                <a href={c.href} className="hover:text-england-red transition-colors">{c.label}</a>
+              </span>
+            ))}
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {[
-              { label: "Group Stage", sub: "27 Jun · MetLife, NYC" },
-              { label: "Round of 32", sub: "1 Jul · Mercedes-Benz, ATL" },
-              { label: "Round of 16", sub: "6 Jul · Azteca, CDMX" },
-              { label: "Quarterfinal", sub: "11 Jul · Hard Rock, MIA" },
+              { label: "Group Stage", sub: "27 Jun · MetLife, NYC", href: "#nyc" },
+              { label: "Round of 32", sub: "1 Jul · Mercedes-Benz, ATL", href: "#atlanta" },
+              { label: "Round of 16", sub: "6 Jul · Azteca, CDMX", href: "#mexico-city" },
+              { label: "Quarterfinal", sub: "11 Jul · Hard Rock, MIA", href: "#miami" },
             ].map((m) => (
-              <div key={m.label} className="bg-england-red/10 border border-england-red/30 rounded-xl px-4 py-3 text-left min-w-[140px]">
+              <a key={m.label} href={m.href} className="group bg-england-red/10 border border-england-red/30 rounded-xl px-4 py-3 text-left min-w-[140px] hover:bg-england-red/20 hover:border-england-red/60 transition-colors">
                 <p className="text-england-red text-xs font-bold uppercase tracking-wide">{m.label}</p>
-                <p className="text-white/60 text-xs mt-0.5">{m.sub}</p>
-              </div>
+                <p className="text-white/60 text-xs mt-0.5 group-hover:text-white/80 transition-colors">{m.sub}</p>
+              </a>
             ))}
           </div>
 
