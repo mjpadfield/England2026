@@ -7,12 +7,14 @@ export default function CitySection({ city, fixtures }: { city: City; fixtures: 
   return (
     <section id={city.id} className="py-20 px-4 border-t border-white/5 scroll-mt-16">
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="mb-10 flex items-center gap-3">
-          <span className="text-4xl">{city.emoji}</span>
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white">{city.name}</h2>
-            <p className="text-white/50 text-sm mt-0.5">{city.country} · {city.dates}</p>
+        {/* City banner */}
+        <div className="relative rounded-2xl overflow-hidden mb-10 border border-white/10" style={{ height: 220 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={city.image} alt={city.name} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/40 to-transparent" />
+          <div className="absolute bottom-5 left-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white text-shadow">{city.name}</h2>
+            <p className="text-white/70 text-sm mt-0.5">{city.country} · {city.dates}</p>
           </div>
         </div>
 

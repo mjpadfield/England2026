@@ -20,6 +20,7 @@ export type City = {
   id: string;
   name: string;
   emoji: string;
+  image: string; // photo of the city — shown as the section banner
   country: string;
   dates: string;
   timezone: string; // IANA timezone — used to localize match kickoff times
@@ -67,6 +68,7 @@ export const cities: City[] = [
     id: "nyc",
     name: "New York City",
     emoji: "🗽",
+    image: "/cities/nyc.jpg",
     country: "USA",
     dates: "26–30 June",
     timezone: "America/New_York",
@@ -170,6 +172,7 @@ export const cities: City[] = [
     id: "atlanta",
     name: "Atlanta",
     emoji: "🍑",
+    image: "/cities/atlanta.jpg",
     country: "USA",
     dates: "30 June – 2 July",
     timezone: "America/New_York",
@@ -248,6 +251,7 @@ export const cities: City[] = [
     id: "cancun",
     name: "Cancún",
     emoji: "🌴",
+    image: "/cities/cancun.jpg",
     country: "Mexico",
     dates: "2–4 July",
     timezone: "America/Cancun",
@@ -307,6 +311,7 @@ export const cities: City[] = [
     id: "mexico-city",
     name: "Mexico City",
     emoji: "🌮",
+    image: "/cities/mexico-city.jpg",
     country: "Mexico",
     dates: "4–7 July",
     timezone: "America/Mexico_City",
@@ -378,6 +383,7 @@ export const cities: City[] = [
     id: "miami",
     name: "Miami",
     emoji: "🌊",
+    image: "/cities/miami.jpg",
     country: "USA",
     dates: "7–13 July",
     timezone: "America/New_York",
