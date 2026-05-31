@@ -35,7 +35,7 @@ export default function CitySection({ city, fixtures }: { city: City; fixtures: 
 
         {/* City map */}
         <div className="rounded-2xl overflow-hidden mb-4 border border-white/10" style={{ height: 300 }}>
-          <CityMap center={city.coords} zoom={city.id === "nyc" ? 11 : 12} locations={city.mapLocations} />
+          <CityMap center={city.coords} zoom={city.id === "nyc" ? 11 : 12} locations={city.mapLocations.filter((l) => l.type !== "bar")} />
         </div>
 
         {/* Map legend */}
@@ -43,7 +43,6 @@ export default function CitySection({ city, fixtures }: { city: City; fixtures: 
           <span><span className="inline-block w-2.5 h-2.5 rounded-full bg-purple-500 mr-1.5 align-middle" />Stay</span>
           <span><span className="inline-block w-2.5 h-2.5 rounded-full bg-england-red mr-1.5 align-middle" />Stadium</span>
           <span><span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 mr-1.5 align-middle" />Fan Zone</span>
-          <span><span className="inline-block w-2.5 h-2.5 rounded-full bg-amber-400 mr-1.5 align-middle" />Bar</span>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
